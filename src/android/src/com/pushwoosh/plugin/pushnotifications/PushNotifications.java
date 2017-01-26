@@ -264,20 +264,23 @@ public class PushNotifications extends CordovaPlugin
 
 		try
 		{
-			//make sure the receivers are on
+			PWLog.debug(TAG, "registerReceivers");
 			registerReceivers();
-
+			PWLog.debug(TAG, "after registerReceivers");
 			startPushData = getPushFromIntent(cordova.getActivity().getIntent());
-
+			PWLog.debug(TAG, "after getPushFromIntent");	
 			String appid = null;
 			if (params.has("appid"))
 				appid = params.getString("appid");
 			else
 				appid = params.getString("pw_appid");
-
+			PWLog.debug(TAG, "appid " + appid);
 			PushManager.initializePushManager(cordova.getActivity(), appid, params.getString("projectid"));
+			PWLog.debug(TAG, "initializePushManager");
 			mPushManager = PushManager.getInstance(cordova.getActivity());
+			PWLog.debug(TAG, "getInstance");
 			mPushManager.onStartup(cordova.getActivity());
+			PWLog.debug(TAG, "onStartup");
 
 			NotificationFactory factory = new NotificationFactory();
 			factory.setPlugin(this);
