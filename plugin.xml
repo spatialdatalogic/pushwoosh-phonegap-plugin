@@ -97,7 +97,7 @@
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
 			<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 			<meta-data android:name="PW_LOG_LEVEL" android:value="$LOG_LEVEL" />
-			<meta-data android:name="PW_NO_BROADCAST_PUSH" android:value="$ANDROID_FOREGROUND_PUSH" />
+			<meta-data android:name="PW_NO_BROADCAST_PUSH" android:value="true" />
 
 			<receiver android:name="com.google.android.gms.gcm.GcmReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
 				<intent-filter>
