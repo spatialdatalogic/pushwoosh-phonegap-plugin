@@ -19,6 +19,8 @@
 
 #define WRITEJS(VAL) [NSString stringWithFormat:@"setTimeout(function() { %@; }, 0);", VAL]
 
+PushNotification *gPushNotification;	
+
 @interface PushNotification()
 
 @property (nonatomic, retain) NSMutableDictionary *callbackIds;
@@ -60,6 +62,7 @@ void pushwoosh_swizzle(Class class, SEL fromChange, SEL toChange, IMP impl, cons
 }
 
 - (PushNotificationManager *)pushManager {
+	gPushNotification = self;
 	if (_pushManager == nil) {
 		_pushManager = [PushNotificationManager pushManager];
 		_pushManager.delegate = self;
@@ -108,7 +111,7 @@ void pushwoosh_swizzle(Class class, SEL fromChange, SEL toChange, IMP impl, cons
 	}
 	
 	UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-	PushNotification *pushHandler = [rootViewController getCommandInstance:@"PushNotification"];
+	PushNotification *pushHandler = gPushNotification;	//[rootViewController getCommandInstance:@"PushNotification"];
 	if (pushHandler.startPushData && !_deviceReady) {
 		[self dispatchPush:pushHandler.startPushData];
 	}
@@ -284,7 +287,7 @@ void pushwoosh_swizzle(Class class, SEL fromChange, SEL toChange, IMP impl, cons
 	if (onStart) {
 		//keep the start push
 		UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-		PushNotification *pushHandler = [rootViewController getCommandInstance:@"PushNotification"];
+		PushNotification *pushHandler = gPushNotification;	//[rootViewController getCommandInstance:@"PushNotification"];
 		pushHandler.startPushData = notification;
 		pushHandler.startPushCleared = NO;
 	}
@@ -359,7 +362,7 @@ void pushwoosh_swizzle(Class class, SEL fromChange, SEL toChange, IMP impl, cons
 
 BOOL pwplugin_didRegisterUserNotificationSettings(id self, SEL _cmd, id application, id notificationSettings) {
 	UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-	PushNotification *pushHandler = rootViewController getCommandInstance:@"PushNotification"];
+	PushNotification *pushHandler = gPushNotification;	//rootViewController getCommandInstance:@"PushNotification"];
 	
 	UIUserNotificationSettings *settings = notificationSettings;
 	
@@ -424,7 +427,7 @@ BOOL pwplugin_didRegisterUserNotificationSettings(id self, SEL _cmd, id applicat
 
 - (NSObject<PushNotificationDelegate> *)getPushwooshDelegate {
 	UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-	PushNotification *pushHandler = [rootViewController getCommandInstance:@"PushNotification"];
+	PushNotification *pushHandler = gPushNotification;	//[rootViewController getCommandInstance:@"PushNotification"];
 	return pushHandler;
 }
 
