@@ -111,18 +111,23 @@ public class PushNotifications extends CordovaPlugin
 	//Registration of the receivers
 	public void registerReceivers()
 	{
+		PWLog.debug(TAG, "before registerReceivers");
 		if (receiversRegistered)
 			return;
 
 		IntentFilter intentFilter = new IntentFilter(cordova.getActivity().getPackageName() + ".action.PUSH_MESSAGE_RECEIVE");
+		PWLog.debug(TAG, "after intentFilter");
 
 		//comment this code out if you would like to receive the notifications in the notifications center when the app is in foreground
 		if (broadcastPush)
+			PWLog.debug(TAG, "broadcastPush " + broadcastPush);
 			cordova.getActivity().registerReceiver(mPushReceiver, intentFilter);
+		PWLog.debug(TAG, "after broadcastPush");
 
 		//registration receiver
+		PWLog.debug(TAG, "before cordova.getActivity().registerReceiver " + cordova.getActivity().getPackageName());
 		cordova.getActivity().registerReceiver(mRegistrationReceiver, new IntentFilter(cordova.getActivity().getPackageName() + "." + PushManager.REGISTER_BROAD_CAST_ACTION));
-
+		PWLog.debug(TAG, "after cordova.getActivity().registerReceiver");
 		receiversRegistered = true;
 	}
 
