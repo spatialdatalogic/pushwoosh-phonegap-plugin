@@ -19,3 +19,7 @@ android {
         applicationId = doExtractStringFromManifest("package")
     }
 }
+
+packagingOptions {
+    exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+}
