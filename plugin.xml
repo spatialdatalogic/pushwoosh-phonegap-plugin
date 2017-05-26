@@ -110,11 +110,8 @@
 				</intent-filter>
 			</receiver>
 
-            
-            <intent-filter>
-                <action android:name="$PACKAGE_NAME.MESSAGE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+
+            <activity android:launchMode="singleTask" />
 
 		</config-file>
 

@@ -49,7 +49,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 public class PushNotifications extends CordovaPlugin
 {
-	private static final String TAG = "CordovaPlugin";
+	private static final String TAG = "pushwoosh";
 
 	boolean receiversRegistered = false;
 	boolean broadcastPush = true;
