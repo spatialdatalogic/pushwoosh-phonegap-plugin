@@ -101,10 +101,6 @@
                 <action android:name="$PACKAGE_NAME.MESSAGE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </config-file>
 
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
