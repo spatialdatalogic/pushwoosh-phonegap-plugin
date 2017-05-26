@@ -96,12 +96,7 @@
 			<!-- </badges> -->
 		</config-file>
 
-        <config-file target="AndroidManifest.xml" parent="/application/activity">
-            <intent-filter>
-                <action android:name="$PACKAGE_NAME.MESSAGE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </config-file>
+
 
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
 			<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
