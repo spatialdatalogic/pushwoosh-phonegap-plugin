@@ -84,10 +84,14 @@ public class PushNotifications extends CordovaPlugin
 	 */
 	public void onNewIntent(Intent intent)
 	{
+	    PWLog.debug(TAG, "onNewIntent1");
 		super.onNewIntent(intent);
+		PWLog.debug(TAG, "onNewIntent2");
 
 		startPushData = getPushFromIntent(intent);
+		PWLog.debug(TAG, "onNewIntent3");
 		checkMessage(intent);
+		PWLog.debug(TAG, "onNewIntent4");
 	}
 
 	private BroadcastReceiver mRegistrationReceiver = new BaseRegistrationReceiver()
@@ -205,6 +209,7 @@ public class PushNotifications extends CordovaPlugin
 
 	private void checkMessage(Intent intent)
 	{
+	    PWLog.debug(TAG, "checkMessage1");
 		if (null != intent)
 		{
 			if (intent.hasExtra(PushManager.PUSH_RECEIVE_EVENT))
@@ -234,7 +239,11 @@ public class PushNotifications extends CordovaPlugin
 			intent.removeExtra(PushManager.REGISTER_ERROR_EVENT);
 			intent.removeExtra(PushManager.UNREGISTER_ERROR_EVENT);
 
+			PWLog.debug(TAG, "checkMessage2");
+
 			cordova.getActivity().setIntent(intent);
+
+			PWLog.debug(TAG, "checkMessage3");
 		}
 	}
 
